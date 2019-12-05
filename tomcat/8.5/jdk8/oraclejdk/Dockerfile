@@ -23,7 +23,8 @@ ENV LANG en_US.UTF-8
 ENV JAVA_VERSION=1.8.0_231 \
 	JAVA_PKG=server-jre-8u231-linux-x64.tar.gz \
 	JAVA_SHA256=1d59a0ea3ef302d5851370b838693b0b6bde4c3f32015a4de0a9e4d202a988fc \
-	JAVA_HOME=/usr/java/jdk1.8.0_231
+	JAVA_HOME=/usr/java/jdk1.8.0_231 \
+	JAVA_OPTS="-Dfile.encoding=utf-8 -Xss5m -Xms512m -Xmx2048m -XX:PermSize=128m -XX:MaxPermSize=256m"
 	
 
 

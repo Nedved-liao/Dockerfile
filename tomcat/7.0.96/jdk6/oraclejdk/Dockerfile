@@ -24,7 +24,7 @@ ENV JAVA_VERSION=1.6.0_45 \
 	JAVA_PKG=jdk1.6.0_45.tar \
 	JAVA_SHA256=cd227195df3b4e54696109bf7e629176f9343b393b425fb532b58ba61d4ddb91 \
 	JAVA_HOME=/usr/java/jdk1.6.0_45 \
-        JAVA_OPTS="-Dfile.encoding=gbk -Xms1024m -Xmx2048m -XX:PermSize=128M -XX:MaxPermSize=512m"
+    JAVA_OPTS="-Dfile.encoding=utf-8 -Xss5m -Xms512m -Xmx2048m -XX:PermSize=128m -XX:MaxPermSize=256m"
 	
 
 
