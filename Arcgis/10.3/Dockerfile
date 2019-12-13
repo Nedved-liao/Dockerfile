@@ -1,6 +1,5 @@
 FROM oraclelinux:7
 
-MAINTAINER Nedved <liao@nedved.st>
 #Add the arcgis user
 RUN set -x \
     && groupadd -g 101 arcgis \
