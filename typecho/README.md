@@ -13,13 +13,13 @@
 如果您有任何改进或建议，请在GitHub项目页面上打开问题或提出请求。
 
 # 版本
-| Docker Tag   | Git Release   | Nginx Version | PHP Version | Alpine Version |
-| ------------ | ------------- | ------------- | ----------- | -------------- |
-| latest/nginx-php7.3-fpm | Master Branch | 1.18.0        | 7.3.17       | 3.10           |
+| Docker Tag   | Nginx Version | PHP Version | Alpine Version |
+| ------------ | ------------- | ----------- | -------------- |
+| latest/nginx-php7.3-fpm | 1.18.0        | 7.3.17       | 3.10           |
 
 ### 链接
 
-- https://github.com/Nedved-liao/Dockerfile/typecho
+- https://github.com/Nedved-liao/Dockerfile/tree/master/typecho
 - https://hub.docker.com/r/nedvedliao/typecho
 
 ## 快速开始

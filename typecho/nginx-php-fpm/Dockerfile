@@ -120,9 +120,8 @@ RUN set -x \
 # forward request and error logs to docker log collector
     && ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log \
-# make default server listen on ipv6
-    && sed -i -E 's,listen       80;,listen       80;\n    listen  [::]:80;,' \
-        /etc/nginx/conf.d/default.conf
+# remove default server 
+    && rm -f /etc/nginx/conf.d/default.conf
 # end nginx
 
 # to solve nginx appeared 502 under high concurrency problems
