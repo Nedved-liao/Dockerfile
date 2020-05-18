@@ -15,7 +15,7 @@ ENV TYPECHO_VERSION 1.1-17.10.30
 # install the PHP extensions typecho need and supervisor
 RUN apk update
 RUN set -e \
-    && apk add libpng-dev freetype-dev libjpeg-turbo-dev supervisor \
+    && apk add bash libpng-dev freetype-dev libjpeg-turbo-dev supervisor \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/  \
     && docker-php-ext-install -j$(nproc) gd  \
     && docker-php-ext-install mysqli pdo pdo_mysql
