@@ -11,8 +11,8 @@ services:
     - ./nginx/certs:/etc/nginx/certs
     - ./nginx/conf.d:/etc/nginx/conf.d
     - ./nginx/nginx.conf/etc/nginx/nginx.conf
-    - ./www:/var/www/html
-    - ./php/run:/var/run/php
+    - www-volume:/var/www/html
+    - sock-volume:/var/run/php
     networks:
     - front
   web.typecho:
@@ -21,8 +21,8 @@ services:
     hostname: typecho
     restart: always
     volumes:
-    - ./www:/var/www/html
-    - ./php/run:/var/run
+    - www-volume:/var/www/html
+    - sock-volume:/var/run
     networks:
     - front
     - back
@@ -54,6 +54,10 @@ services:
     - MYSQL_PASSWORD=mysql_typecho_pass
     networks:
     - back
+
+volumes:
+  sock-volume:
+  www-volume:
 
 networks:
   front:
