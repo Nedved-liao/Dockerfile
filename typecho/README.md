@@ -1,5 +1,6 @@
 # Overview
-[English]() | [简体中文]()
+English | [简体中文](https://github.com/Nedved-liao/Dockerfile/blob/master/typecho/README_CN.md)
+
 The repo to build typecho blog
 
 This is a Dockerfile/image, used to nginx and php-fpm build container
@@ -114,7 +115,7 @@ tree ./nginx
 
 
 # The author
-Author: Nedvedliao
+Author：[![img](https://avatars2.githubusercontent.com/u/35453327?s=460&u=5e51cadc61eb784aeb28040b1811b7357c5a28d8&v=4)](https://github.com/Nedved-liao)
 
 Email: admin@nedved.st
 
