@@ -10,6 +10,7 @@ services:
     volumes:
     - ./nginx/certs:/etc/nginx/certs
     - ./nginx/conf.d:/etc/nginx/conf.d
+    - ./nginx/nginx.conf/etc/nginx/nginx.conf
     - ./www:/var/www/html
     - ./php/run:/var/run/php
     networks:

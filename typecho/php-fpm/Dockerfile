@@ -50,6 +50,9 @@ RUN set -e \
 
 VOLUME /var/www/html
 
+# add supervisord conf
+ADD conf/supervisord.conf /etc/supervisord.conf
+
 COPY docker-entrypoint.sh /usr/local/bin/
 
 WORKDIR "/var/www/html"
