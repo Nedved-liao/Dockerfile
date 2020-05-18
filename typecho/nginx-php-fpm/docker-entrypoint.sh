@@ -15,7 +15,7 @@ group=nginx
 		sourceTarArgs=(
 			--create
 			--file -
-			--directory /usr/src/wordpress
+			--directory /tmp/build
 			--owner "$user" --group "$group"
 		)
 		targetTarArgs=(
