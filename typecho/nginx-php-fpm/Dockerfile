@@ -172,4 +172,3 @@ COPY docker-entrypoint.sh /usr/local/bin/
 EXPOSE 443 80
 WORKDIR "/var/www/html"
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["supervisord", "-c", "/etc/supervisord.conf"]

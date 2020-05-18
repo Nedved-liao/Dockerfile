@@ -29,3 +29,6 @@ group=nginx
         tar "${sourceTarArgs[@]}" . | tar "${targetTarArgs[@]}"
         echo >&2 "Complete! typecho has been successfully copied to $PWD"
     fi
+
+# start nginx and php-fpm
+supervisord -c /etc/supervisord.conf
