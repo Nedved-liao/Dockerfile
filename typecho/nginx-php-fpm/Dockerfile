@@ -14,7 +14,7 @@ ENV TYPECHO_VERSION 1.1-17.10.30
 
 # install the PHP extensions typecho need and supervisor
 RUN apk update
-RUN set -x \
+RUN set -e \
     && apk add libpng-dev freetype-dev libjpeg-turbo-dev supervisor \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/  \
     && docker-php-ext-install -j$(nproc) gd  \
@@ -126,7 +126,7 @@ RUN set -x \
 
 # to solve nginx appeared 502 under high concurrency problems
 # open multiple main process
-RUN set -x \
+RUN set -e \
     && cp ${fpm_conf} ${fpm_conf1} \   
 # optimize php-fpm config
     && echo "cgi.fix_pathinfo=0" > ${php_vars} \
@@ -154,20 +154,22 @@ RUN set -x \
     && sed -i "s/php-fpm1.sock/php-fpm2.sock/" ${fpm_conf2}
 
 # Download the latest typecho https://github.com/typecho/typecho/releases/download/v1.1-17.10.30-release/1.1.17.10.30.-release.tar.gz
-RUN set -x \
+RUN set -e \
     && wget -O /tmp/typecho.tar.gz https://github.com/typecho/typecho/releases/download/v1.1-17.10.30-release/1.1.17.10.30.-release.tar.gz \
     && tar -xf /tmp/typecho.tar.gz -C /tmp \
-    && mv /tmp/build/* /var/www/html \
-    && rmdir /tmp/build/ \
     && rm -rf /tmp/typecho.tar.gz \
-    && chown -R nginx:nginx /var/www/html
+    && chown -R nginx:nginx /tmp/build
+
+VOLUME /var/www/html
 
 # add supervisord conf
 ADD conf/supervisord.conf /etc/supervisord.conf
 # add nginx conf and site(defualt http) conf
 ADD conf/nginx.conf /etc/nginx/nginx.conf
 ADD conf/nginx-site.conf /etc/nginx/conf.d/nginx-site.conf
+COPY docker-entrypoint.sh /usr/local/bin/
 
 EXPOSE 443 80
 WORKDIR "/var/www/html"
-ENTRYPOINT ["supervisord", "-c", "/etc/supervisord.conf"]
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["supervisord", "-c", "/etc/supervisord.conf"]
