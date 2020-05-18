@@ -1,4 +1,5 @@
 # 总览
+[English](https://github.com/Nedved-liao/Dockerfile/blob/master/typecho/README.md) | 简体中文
 
 这个repo用于搭建typecho博客
 
@@ -109,8 +110,8 @@ tree ./nginx
 
 
 
-# 作者
-Author: Nedvedliao
+# 贡献者
+Author：[<img src="https://avatars2.githubusercontent.com/u/35453327?s=460&amp;u=5e51cadc61eb784aeb28040b1811b7357c5a28d8&amp;v=4" alt="img" style="zoom:25%;" />](https://github.com/Nedved-liao)
 
 Email: admin@nedved.st
 
