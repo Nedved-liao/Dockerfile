@@ -115,7 +115,7 @@ tree ./nginx
 
 
 # Contributors
-Author：[<img src="https://avatars2.githubusercontent.com/u/35453327?s=460&amp;u=5e51cadc61eb784aeb28040b1811b7357c5a28d8&amp;v=4" alt="img" style="zoom:25%;" />](https://github.com/Nedved-liao)
+Author：[<img src="https://avatars2.githubusercontent.com/u/35453327?s=460&amp;u=5e51cadc61eb784aeb28040b1811b7357c5a28d8&amp;v=4" width="50" style="max-width:100%;" />](https://github.com/Nedved-liao)
 
 Email: admin@nedved.st
 
