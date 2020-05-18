@@ -31,4 +31,4 @@ group=www-data
     fi
 
 # start php-fpm
-php-fpm -D
+supervisord -c /etc/supervisord.conf

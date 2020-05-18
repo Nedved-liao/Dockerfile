@@ -11,6 +11,7 @@ services:
     - ./nginx/certs:/etc/nginx/certs
     - ./nginx/conf.d:/etc/nginx/conf.d
     - ./www:/var/www/html
+    - ./php/run:/var/run/php
     networks:
     - front
   web.typecho:
@@ -20,6 +21,7 @@ services:
     restart: always
     volumes:
     - ./www:/var/www/html
+    - ./php/run:/var/run
     networks:
     - front
     - back

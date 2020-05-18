@@ -2,14 +2,16 @@ FROM php:7.3-fpm-alpine
 
 ENV php_conf /usr/local/etc/php-fpm.conf
 ENV fpm_conf /usr/local/etc/php-fpm.d/www.conf
+ENV fpm_conf1 /usr/local/etc/php-fpm.d/www1.conf
+ENV fpm_conf2 /usr/local/etc/php-fpm.d/www2.conf
 ENV php_vars /usr/local/etc/php/conf.d/docker-vars.ini
 
 ENV TYPECHO_VERSION 1.1-17.10.30
 
-# install the PHP extensions typecho need
+# install the PHP extensions typecho need and supervisord
 RUN apk update
 RUN set -e \
-    && apk add bash libpng-dev freetype-dev libjpeg-turbo-dev \
+    && apk add bash libpng-dev freetype-dev libjpeg-turbo-dev supervisor \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/  \
     && docker-php-ext-install -j$(nproc) gd  \
     && docker-php-ext-install mysqli pdo pdo_mysql
@@ -17,7 +19,8 @@ RUN set -e \
 # to solve nginx appeared 502 under high concurrency problems
 # open multiple main process
 RUN set -e \
-    # optimize php-fpm config
+    && cp ${fpm_conf} ${fpm_conf1} \   
+# optimize php-fpm config
     && echo "cgi.fix_pathinfo=0" > ${php_vars} \
     && echo "upload_max_filesize = 1024M"  >> ${php_vars} \
     && echo "post_max_size = 1024M"  >> ${php_vars} \
@@ -32,8 +35,11 @@ RUN set -e \
         -e "s/pm.max_spare_servers = 3/pm.max_spare_servers = 16/g" \
         -e "s/;pm.max_requests = 500/pm.max_requests = 1024/g" \
         -e "s/;listen.mode = 0660/listen.mode = 0666/g" \
+        -e "s/listen = 127.0.0.1:9000/listen = \/var\/run\/php-fpm1.sock/g" \
         -e "s/^;clear_env = no$/clear_env = no/" \
-        ${fpm_conf}
+        ${fpm_conf1} \
+    && cp ${fpm_conf1} ${fpm_conf2} \
+    && sed -i "s/php-fpm1.sock/php-fpm2.sock/" ${fpm_conf2}
 
 # Download the latest typecho https://github.com/typecho/typecho/releases/download/v1.1-17.10.30-release/1.1.17.10.30.-release.tar.gz
 RUN set -e \
