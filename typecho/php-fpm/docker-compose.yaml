@@ -1,0 +1,66 @@
+services:
+  web.proxy:
+    image: nginx:alpine
+    container_name: nginx
+    hostname: nginx
+    restart: always
+    ports:
+    - 80:80/tcp
+    - 443:443/tcp
+    volumes:
+    - ./nginx/certs:/etc/nginx/certs
+    - ./nginx/conf.d:/etc/nginx/conf.d
+    - ./www:/var/www/html
+    networks:
+    - front
+  web.typecho:
+    image: typecho:php7.3-fpm
+    container_name: typecho
+    hostname: typecho
+    restart: always
+    volumes:
+    - ./www:/var/www/html
+    networks:
+    - front
+    - back
+
+  db.redis:
+    image: redis
+    container_name: redis
+    hostname: redis
+    restart: always
+    environment:
+    - REDIS_PASS=redis_pass
+    networks:
+    - back
+
+  db.mysql:
+    image: mysql:5.7
+    container_name: mysql
+    hostname: mysql
+    privileged: false
+    restart: always
+    ports:
+    - 3306:3306
+    volumes:
+    - ./mysql:/var/lib/mysql
+    environment:
+    - MYSQL_ROOT_PASSWORD=mysql_root_pass
+    - MYSQL_DATABASE=typecho
+    - MYSQL_USER=typecho
+    - MYSQL_PASSWORD=mysql_typecho_pass
+    networks:
+    - back
+
+networks:
+  front:
+    ipam:
+      config:
+      - subnet: 172.15.0.0/16
+
+  back:
+    ipam:
+      config:
+      - subnet: 172.25.0.0/16
+
+version: '3.4'
