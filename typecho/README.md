@@ -18,7 +18,7 @@ If you have any improvement or Suggestions, please in making project page on ope
 # Version
 | Docker Tag   | Nginx Version | PHP Version | Alpine Version | note | port |
 | ------------ | ------------- | ----------- | -------------- | -------------- | -------------- | 
-| nginx-php7.3-fpm | 1.18.0        | 7.3.17       | 3.10           | 集成NGINX | 80, 443 |
+| nginx-php7.3-fpm | 1.18.0        | 7.3.17       | 3.10           | Integrated NGINX | 80, 443 |
 | php7.3-fpm | 1.18.0        | 7.3.17       | 3.10           |  | |
 
 # Module
