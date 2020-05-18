@@ -95,7 +95,7 @@ sudo docker run -d --name typecho -p 80:80 -v /your_code_directory:/var/www/html
 # 使用docker-compose快速部署
 1.直接使用nginx-php-fpm项目的[docker-compose.yaml](https://github.com/Nedved-liao/Dockerfile/blob/master/typecho/nginx-php-fpm/docker-compose.yaml)去docker-compose up -d即可
 
-2.使用php-fpm项目的[docker-compose.yaml](https://github.com/Nedved-liao/Dockerfile/blob/master/typecho/nginx-php-fpm/docker-compose.yaml)部署,需并把对应的配置文件放进nginx目录再docker-compose up -d
+2.使用php-fpm项目的[docker-compose.yaml](https://github.com/Nedved-liao/Dockerfile/blob/master/typecho/php-fpm/docker-compose.yaml)部署,需并把对应的配置文件放进nginx目录再docker-compose up -d
 ```
 tree ./nginx
 .

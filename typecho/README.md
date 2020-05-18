@@ -30,7 +30,7 @@ If you have any improvement or Suggestions, please in making project page on ope
 # Links
 
 - https://github.com/Nedved-liao/Dockerfile/tree/master/typecho
-- https://hub.docker.com/r/nedvedliao/typecho
+- https://hub.docker.com/ https://hub.docker.com/r/nedvedliao/typecho
 
 # Quick Start
 
@@ -96,7 +96,7 @@ sudo docker run -d --name typecho -p 80:80 -v /your_code_directory:/var/www/html
 
 run docker-compose up -d
 
-2.Use php-fpm project [docker-compose.yaml](https://github.com/Nedved-liao/Dockerfile/blob/master/typecho/nginx-php-fpm/docker-compose.yaml)
+2.Use php-fpm project [docker-compose.yaml](https://github.com/Nedved-liao/Dockerfile/blob/master/typecho/php-fpm/docker-compose.yaml)
 
 Need and put the configuration file in nginx directory ,then
 docker-compose up - d
