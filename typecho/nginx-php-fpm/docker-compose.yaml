@@ -1,17 +1,4 @@
 services:
-  web.proxy:
-    image: nginx:alpine
-    container_name: nginx
-    hostname: nginx
-    restart: always
-    ports:
-    - 80:80/tcp
-    - 443:443/tcp
-    volumes:
-    - ./nginx/certs:/etc/nginx/certs
-    - ./nginx/conf.d:/etc/nginx/conf.d
-    networks:
-    - front
   web.typecho:
     image: typecho:nginx-php7.3-fpm
     container_name: typecho
