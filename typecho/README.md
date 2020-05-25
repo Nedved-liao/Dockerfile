@@ -28,7 +28,7 @@ If you have any improvement or Suggestions, please in making project page on ope
 
 # Module
 
-| ation   | Version | PHP Version                                                  |
+| Application   | Version | Module                                              |
 | :------ | :------ | :----------------------------------------------------------- |
 | php-fpm | 7.3.17  | Core<br/>ctype<br/>curl<br/>date<br/>dom<br/>fileinfo<br/>filter<br/>ftp<br/>gd<br/>hash<br/>iconv<br/>json<br/>libxml<br/>mbstring<br/>mysqli<br/>mysqlnd<br/>openssl<br/>pcre<br/>PDO<br/>pdo_mysql<br/>pdo_sqlite<br/>Phar<br/>posix<br/>readline<br/>Reflection<br/>session<br/>SimpleXML<br/>sodium<br/>SPL<br/>sqlite3<br/>standard<br/>tokenizer<br/>xml<br/>xmlreader<br/>xmlwriter<br/>zlib<br/>redis |
 | nginx   | 1.18.0  | --prefix=/etc/nginx<br/>--sbin-path=/usr/sbin/nginx<br/>--modules-path=/usr/lib/nginx/modules<br/>--conf-path=/etc/nginx/nginx.conf<br/>--error-log-path=/var/log/nginx/error.log<br/>--http-log-path=/var/log/nginx/access.log<br/>--pid-path=/var/run/nginx.pid<br/>--lock-path=/var/run/nginx.lock<br/>--http-client-body-temp-path=/var/cache/nginx/client_temp<br/>--http-proxy-temp-path=/var/cache/nginx/proxy_temp<br/>--http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp<br/>--http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp<br/>--http-scgi-temp-path=/var/cache/nginx/scgi_temp<br/>--with-perl_modules_path=/usr/lib/perl5/vendor_perl<br/>--user=nginx<br/>--group=nginx<br/>--with-compat<br/>--with-file-aio<br/>--with-threads<br/>--with-http_addition_module<br/>--with-http_auth_request_module<br/>--with-http_dav_module<br/>--with-http_flv_module<br/>--with-http_gunzip_module<br/>--with-http_gzip_static_module<br/>--with-http_mp4_module<br/>--with-http_random_index_module<br/>--with-http_realip_module<br/>--with-http_secure_link_module<br/>--with-http_slice_module<br/>--with-http_ssl_module<br/>--with-http_stub_status_module<br/>--with-http_sub_module<br/>--with-http_v2_module<br/>--with-mail<br/>--with-mail_ssl_module<br/>--with-stream<br/>--with-stream_realip_module<br/>--with-stream_ssl_module<br/>--with-stream_ssl_preread_module<br/>--with-cc-opt='-Os<br/>-fomit-frame-pointer'<br/>--with-ld-opt=-Wl,--as-needed |
@@ -126,8 +126,8 @@ tree ./nginx
 └── nginx.conf
 ```
 
-
-
+# Document
+[Typecho-搭建使用文档](https://github.com/Nedved-liao/Dockerfile/wiki/typecho-%E6%90%AD%E5%BB%BA%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3)
 
 # Contributors
 

@@ -56,6 +56,11 @@ services:
 volumes:
   sock-volume:
   www-volume:
+    driver_opts:
+      type: none
+      device: /nginx/www
+      o: bind
+
 
 networks:
   front:
