@@ -157,8 +157,8 @@ RUN set -e \
 
 # download the cachetool
 RUN set -e \
-    && curl -l http://gordalina.github.io/cachetool/downloads/cachetool.phar -o /usr/local/bin/cachetool.phar; \
-    chmod +x /usr/local/bin/cachetool.phar
+    && curl -l http://gordalina.github.io/cachetool/downloads/cachetool.phar -o /usr/local/bin/cachetool.phar \
+    && chmod +x /usr/local/bin/cachetool.phar
 
 COPY scripts/cachetool /usr/local/bin/
 
@@ -177,7 +177,7 @@ COPY conf/supervisord.conf /etc/supervisord.conf
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 COPY conf/nginx-site.conf /etc/nginx/conf.d/nginx-site.conf
 
-COPY docker-entrypoint.sh /usr/local/bin/
+COPY scripts/docker-entrypoint.sh /usr/local/bin/
 
 EXPOSE 443 80
 WORKDIR "/var/www/html"

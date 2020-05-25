@@ -9,7 +9,7 @@ ENV PHPREDIS_VERSION 5.2.2
 
 ENV TYPECHO_VERSION 1.1-17.10.30
 
-# install the PHP extensions typecho need and supervisord
+# install the PHP extensions typecho need, supervisor and php-redis
 RUN apk update
 RUN set -e \
     && apk add bash libpng-dev freetype-dev libjpeg-turbo-dev supervisor \
@@ -17,12 +17,11 @@ RUN set -e \
     && docker-php-ext-install -j$(nproc) gd  \
     && docker-php-ext-install mysqli pdo pdo_mysql \
 # download the phpredis    
-    && wget https://github.com/phpredis/phpredis/archive/${PHPREDIS_VERSION}.zip -O /tmp \
-    && cd /tmp \
+    && wget https://github.com/phpredis/phpredis/archive/${PHPREDIS_VERSION}.zip -O /tmp/redis.zip \
     && mkdir -p /usr/src/php/ext \
-    && unzip ./${PHPREDIS_VERSION}.zip -d /usr/src/php/ext/ \    
+    && unzip /tmp/redis.zip -d /usr/src/php/ext/ \    
     && docker-php-ext-install phpredis-${PHPREDIS_VERSION} \
-    && rm -rf /tmp/${PHPREDIS_VERSION}.zip
+    && rm -rf /tmp/redis.zip
 
 COPY conf/docker-vars.ini $php_vars
 # to solve nginx appeared 502 under high concurrency problems
@@ -52,9 +51,9 @@ RUN set -e \
 
 # download the cachetool
 RUN set -e \
-    && curl -sO http://gordalina.github.io/cachetool/downloads/cachetool.phar \
-    && chmod +x cachetool.phar
-    
+    && curl -l http://gordalina.github.io/cachetool/downloads/cachetool.phar -o /usr/local/bin/cachetool.phar \
+    && chmod +x /usr/local/bin/cachetool.phar
+
 COPY scripts/cachetool /usr/local/bin/
 
 # Download the latest typecho https://github.com/typecho/typecho/releases/download/v1.1-17.10.30-release/1.1.17.10.30.-release.tar.gz
@@ -69,7 +68,7 @@ VOLUME /var/www/html
 # add supervisord conf
 ADD conf/supervisord.conf /etc/supervisord.conf
 
-COPY docker-entrypoint.sh /usr/local/bin/
+COPY scripts/docker-entrypoint.sh /usr/local/bin/
 
 WORKDIR "/var/www/html"
 ENTRYPOINT ["docker-entrypoint.sh"]

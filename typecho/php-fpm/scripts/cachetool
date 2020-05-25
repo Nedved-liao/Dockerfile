@@ -1,0 +1,31 @@
+#! /bin/bash
+#
+# Opcache       status Opcache
+#
+Config='--fcgi=/var/run/php-fpm1.sock'
+Tool='/usr/local/bin/cachetool.phar'
+# Check the $tool exists
+if [ ! -f $tool ]; then
+echo 1
+    exit 6
+fi
+
+# See how we were called.
+case "$1" in
+config)
+    php $Tool opcache:configuration $Config
+    ;;
+status)
+    php $Tool opcache:status $Config
+    ;;
+reset)
+    php $Tool opcache:reset $Config
+    ;;
+scripts)
+    php $Tool opcache:status:scripts $Config
+    ;;
+*)
+    echo $"Usage: $0 {config|status|reset|scripts}"
+    exit 2
+esac
+

@@ -32,8 +32,6 @@ services:
     container_name: redis
     hostname: redis
     restart: always
-    environment:
-    - REDIS_PASS=redis_pass
     networks:
     - back
 
