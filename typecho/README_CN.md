@@ -4,6 +4,7 @@
 这个repo用于搭建typecho博客
 
 这是一个Dockerfile / image，用于为nginx和php-fpm构建容器
+- 支持Redis缓存
 - 支持SSL配置
 - 自定义nginx配置
 - 自定义php配置
@@ -11,6 +12,8 @@
 - 优化nginx基础参数
 - nginx配置文件带有反爬虫配置(默认不开启)
 - php与nginx通信使用sock
+- 使用Zend Opcache缓存
+- docker-compose一键部署
 
 
 如果您有任何改进或建议，请在GitHub项目页面上打开问题或提出请求。
@@ -46,13 +49,13 @@ git checkout typecho/master --  typecho
 ### 构建nginx-php-fpm镜像
 ```
 cd typecho/nginx-php-fpm
-chmod +x docker-entrypoint.sh
+chmod +x scripts/*
 docker build -t typecho:nginx-php7.3-fpm .
 ```
 ### 构建php-fpm镜像
 ```
 cd typecho/php-fpm
-chmod +x docker-entrypoint.sh
+chmod +x scripts/*
 docker build -t typecho:php7.3-fpm .
 ```
 

@@ -4,6 +4,7 @@ English | [简体中文](https://github.com/Nedved-liao/Dockerfile/blob/master/t
 The repo to build typecho blog
 
 This is a Dockerfile/image, used to nginx and php-fpm build container
+- Support Redis
 - Support SSL
 - Custom nginx configuration
 - Custom php configuration
@@ -11,7 +12,8 @@ This is a Dockerfile/image, used to nginx and php-fpm build container
 - Tweak nginx config
 - Nginx config file with the anti_spider(default no)
 - Php and nginx communication using the sock
-
+- Use Zend Opcache cache
+- Use docker-compose
 
 If you have any improvement or Suggestions, please in making project page on open questions or request.
 
@@ -45,13 +47,13 @@ git checkout typecho/master --  typecho
 ### Building nginx-php-fpm
 ```
 cd typecho/nginx-php-fpm
-chmod +x docker-entrypoint.sh
+chmod +x scripts/*
 docker build -t typecho:nginx-php7.3-fpm .
 ```
 ### Building php-fpm
 ```
 cd typecho/php-fpm
-chmod +x docker-entrypoint.sh
+chmod +x scripts/*
 docker build -t typecho:php7.3-fpm .
 ```
 
