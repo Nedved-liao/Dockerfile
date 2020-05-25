@@ -5,6 +5,7 @@ ENV fpm_conf /usr/local/etc/php-fpm.d/www.conf
 ENV fpm_conf1 /usr/local/etc/php-fpm.d/www1.conf
 ENV fpm_conf2 /usr/local/etc/php-fpm.d/www2.conf
 ENV php_vars /usr/local/etc/php/conf.d/docker-vars.ini
+ENV PHPREDIS_VERSION 5.2.2
 
 ENV TYPECHO_VERSION 1.1-17.10.30
 
@@ -14,8 +15,16 @@ RUN set -e \
     && apk add bash libpng-dev freetype-dev libjpeg-turbo-dev supervisor \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/  \
     && docker-php-ext-install -j$(nproc) gd  \
-    && docker-php-ext-install mysqli pdo pdo_mysql
+    && docker-php-ext-install mysqli pdo pdo_mysql \
+# download the phpredis    
+    && wget https://github.com/phpredis/phpredis/archive/${PHPREDIS_VERSION}.zip -O /tmp \
+    && cd /tmp \
+    && mkdir -p /usr/src/php/ext \
+    && unzip ./${PHPREDIS_VERSION}.zip -d /usr/src/php/ext/ \    
+    && docker-php-ext-install phpredis-${PHPREDIS_VERSION} \
+    && rm -rf /tmp/${PHPREDIS_VERSION}.zip
 
+COPY conf/docker-vars.ini $php_vars
 # to solve nginx appeared 502 under high concurrency problems
 # open multiple main process
 RUN set -e \
@@ -41,6 +50,13 @@ RUN set -e \
     && cp ${fpm_conf1} ${fpm_conf2} \
     && sed -i "s/php-fpm1.sock/php-fpm2.sock/" ${fpm_conf2}
 
+# download the cachetool
+RUN set -e \
+    && curl -sO http://gordalina.github.io/cachetool/downloads/cachetool.phar \
+    && chmod +x cachetool.phar
+    
+COPY scripts/cachetool /usr/local/bin/
+
 # Download the latest typecho https://github.com/typecho/typecho/releases/download/v1.1-17.10.30-release/1.1.17.10.30.-release.tar.gz
 RUN set -e \
     && wget -O /tmp/typecho.tar.gz https://github.com/typecho/typecho/releases/download/v1.1-17.10.30-release/1.1.17.10.30.-release.tar.gz \
@@ -56,5 +72,4 @@ ADD conf/supervisord.conf /etc/supervisord.conf
 COPY docker-entrypoint.sh /usr/local/bin/
 
 WORKDIR "/var/www/html"
-
 ENTRYPOINT ["docker-entrypoint.sh"]
