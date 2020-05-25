@@ -51,9 +51,6 @@ services:
     networks:
     - back
 
-volumes:
-  sock-volume:
-
 networks:
   front:
     ipam:

@@ -21,12 +21,11 @@ RUN set -e \
     && docker-php-ext-install -j$(nproc) gd  \
     && docker-php-ext-install mysqli pdo pdo_mysql \
 # download the phpredis    
-    && wget https://github.com/phpredis/phpredis/archive/${PHPREDIS_VERSION}.zip -O /tmp \
-    && cd /tmp \
+    && wget https://github.com/phpredis/phpredis/archive/${PHPREDIS_VERSION}.zip -O /tmp/redis.zip \
     && mkdir -p /usr/src/php/ext \
-    && unzip ./${PHPREDIS_VERSION}.zip -d /usr/src/php/ext/ \    
+    && unzip /tmp/redis.zip -d /usr/src/php/ext/ \    
     && docker-php-ext-install phpredis-${PHPREDIS_VERSION} \
-    && rm -rf /tmp/${PHPREDIS_VERSION}.zip
+    && rm -rf /tmp/redis.zip
 
 # begin nginx
 # install the nginx source https://github.com/nginxinc/docker-nginx/blob/master/stable/alpine/Dockerfile
@@ -158,9 +157,9 @@ RUN set -e \
 
 # download the cachetool
 RUN set -e \
-    && curl -sO http://gordalina.github.io/cachetool/downloads/cachetool.phar \
-    && chmod +x cachetool.phar
-    
+    && curl -l http://gordalina.github.io/cachetool/downloads/cachetool.phar -o /usr/local/bin/cachetool.phar; \
+    chmod +x /usr/local/bin/cachetool.phar
+
 COPY scripts/cachetool /usr/local/bin/
 
 # download the latest typecho https://github.com/typecho/typecho/releases/download/v1.1-17.10.30-release/1.1.17.10.30.-release.tar.gz
