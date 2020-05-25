@@ -29,12 +29,6 @@ COPY conf/docker-vars.ini $php_vars
 RUN set -e \
     && cp ${fpm_conf} ${fpm_conf1} \   
 # optimize php-fpm config
-    && echo "cgi.fix_pathinfo=0" > ${php_vars} \
-    && echo "upload_max_filesize = 1024M"  >> ${php_vars} \
-    && echo "post_max_size = 1024M"  >> ${php_vars} \
-    && echo "variables_order = \"EGPCS\""  >> ${php_vars} \
-    && echo "memory_limit = 512M"  >> ${php_vars} \
-    && echo "output_buffering =on" >> ${php_vars} \
     && sed -i \
         -e "s/;catch_workers_output\s*=\s*yes/catch_workers_output = yes/g" \
         -e "s/pm.max_children = 5/pm.max_children = 25/g" \
