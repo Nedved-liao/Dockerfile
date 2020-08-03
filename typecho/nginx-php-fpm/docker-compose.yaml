@@ -8,6 +8,7 @@ services:
     - 80:80/tcp
     - 443:443/tcp
     volumes:
+    #ssl setting
     #- ./nginx/certs:/etc/nginx/certs
     #- ./nginx/conf.d:/etc/nginx/conf.d
     - ./nginx/html:/var/www/html
