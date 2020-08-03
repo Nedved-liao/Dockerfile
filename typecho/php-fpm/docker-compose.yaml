@@ -16,7 +16,7 @@ services:
     networks:
     - front
   web.typecho:
-    image: typecho:php7.3-fpm
+    image: nedvedliao/typecho:php7.3-fpm
     container_name: typecho
     hostname: typecho
     restart: always
