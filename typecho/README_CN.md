@@ -23,7 +23,7 @@
 
 # 版本
 | Docker Tag   | Nginx Version | PHP Version | Alpine Version | note | port |
-| ------------ | ------------- | ----------- | -------------- | -------------- | -------------- | 
+| ------------ | ------------- | ----------- | -------------- | -------------- | -------------- |
 | nginx-php7.3-fpm | 1.18.0        | 7.3.17       | 3.10           | 集成NGINX | 80, 443 |
 | php7.3-fpm | 1.18.0        | 7.3.17       | 3.10           |  | |
 
@@ -39,9 +39,45 @@
 - https://hub.docker.com/r/nedvedliao/typecho
 
 # 快速开始
+# 使用docker-compose快速部署
+1.直接使用nginx-php-fpm项目的[docker-compose.yaml](https://github.com/Nedved-liao/Dockerfile/blob/master/typecho/nginx-php-fpm/docker-compose.yaml)
 
+```bash
+sudo wget https://github.com/Nedved-liao/Dockerfile/blob/master/typecho/nginx-php-fpm/docker-compose.yaml
+sudo docker-compose up -d
+```
+
+打开http:/ip
+
+进行安装typecho，
+
+> **数据库地址** db.mysql
+>
+> **数据库端口** 3306
+
+2.使用php-fpm项目的[docker-compose.yaml](https://github.com/Nedved-liao/Dockerfile/blob/master/typecho/php-fpm/docker-compose.yaml)部署,需并把对应的配置文件放进nginx目录再docker-compose up -d
+
+```bash
+tree ./nginx
+.
+├── certs
+│   ├── nginx.key
+│   └── nginx.pem
+├── conf.d
+│   └── nginx-site-ssl.conf
+└── nginx.conf
+```
+
+打开https:/ip
+
+进行安装typecho，
+
+> **数据库地址** db.mysql
+>
+> **数据库端口** 3306
 
 ## 从构建开始
+
 ```
 git init
 git remote add typecho https://github.com/Nedved-liao/Dockerfile.git
@@ -97,27 +133,9 @@ sudo docker run -d --name typecho -p 80:80 -v /your_code_directory:/var/www/html
 </details>
 
 
-# 使用docker-compose快速部署
-1.直接使用nginx-php-fpm项目的[docker-compose.yaml](https://github.com/Nedved-liao/Dockerfile/blob/master/typecho/nginx-php-fpm/docker-compose.yaml)去docker-compose up -d即可
-
-2.使用php-fpm项目的[docker-compose.yaml](https://github.com/Nedved-liao/Dockerfile/blob/master/typecho/php-fpm/docker-compose.yaml)部署,需并把对应的配置文件放进nginx目录再docker-compose up -d
-```
-tree ./nginx
-.
-├── certs
-│   ├── nginx.key
-│   └── nginx.pem
-├── conf.d
-│   └── nginx-site-ssl.conf
-└── nginx.conf
-```
-
-
-
-
 # 贡献者
 Author：[<img src="https://avatars2.githubusercontent.com/u/35453327?s=460&amp;u=5e51cadc61eb784aeb28040b1811b7357c5a28d8&amp;v=4" width="50" style="max-width:100%;" />](https://github.com/Nedved-liao)
 
 Email: admin@nedved.st
 
-Link: https://www.nedved.st
+Link: https://www.leonisir.com

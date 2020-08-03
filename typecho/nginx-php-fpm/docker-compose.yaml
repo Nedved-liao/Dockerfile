@@ -1,26 +1,16 @@
 services:
-  #若无需反向代理,把web.proxy删除。在web.typecho中新增ports: 映射
-  web.proxy:
-    image: nginx:alpine
-    container_name: nginx
-    hostname: nginx
-    restart: always
-    ports:
-    - 80:80/tcp
-    - 443:443/tcp
-    volumes:
-    - ./nginx/certs:/etc/nginx/certs
-    - ./nginx/conf.d:/etc/nginx/conf.d
-    - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-    networks:
-    - front
   web.typecho:
     image: nedvedliao/typecho:nginx-php7.3-fpm
     container_name: typecho
     hostname: typecho
     restart: always
+    ports:
+    - 80:80/tcp
+    - 443:443/tcp
     volumes:
-    - /nginx/html:/var/www/html
+    #- ./nginx/certs:/etc/nginx/certs
+    #- ./nginx/conf.d:/etc/nginx/conf.d
+    - ./nginx/html:/var/www/html
     networks:
     - front
     - back

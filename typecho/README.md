@@ -40,6 +40,46 @@ If you have any improvement or Suggestions, please in making project page on ope
 
 # Quick Start
 
+## Use docker-compose
+
+1.Use nginx-php-fpm project [docker-compose.yaml](https://github.com/Nedved-liao/Dockerfile/blob/master/typecho/nginx-php-fpm/docker-compose.yaml) 
+
+```bash
+sudo wget https://raw.github.com/Nedved-liao/Dockerfile/master/typecho/nginx-php-fpm/docker-compose.yaml
+sudo docker-compose up -d
+```
+
+open url http:/ip
+
+install  typecho，
+
+> **数据库地址** db.mysql
+>
+> **数据库端口** 3306
+
+2.Use php-fpm project [docker-compose.yaml](https://github.com/Nedved-liao/Dockerfile/blob/master/typecho/php-fpm/docker-compose.yaml)
+
+Need and put the configuration file in nginx directory ,then
+docker-compose up - d
+
+```
+tree ./nginx
+.
+├── certs
+│   ├── nginx.key
+│   └── nginx.pem
+├── conf.d
+│   └── nginx-site-ssl.conf
+└── nginx.conf
+```
+
+open url https:/ip
+
+install typecho，
+
+> **数据库地址** db.mysql
+>
+> **数据库端口** 3306
 
 ## Building
 
@@ -103,29 +143,6 @@ sudo docker run -d --name typecho -p 80:80 -v /your_code_directory:/var/www/html
 </details>
 
 
-
-# Use docker-compose
-
-1.Use nginx-php-fpm project [docker-compose.yaml](https://github.com/Nedved-liao/Dockerfile/blob/master/typecho/nginx-php-fpm/docker-compose.yaml) 
-
-run docker-compose up -d
-
-2.Use php-fpm project [docker-compose.yaml](https://github.com/Nedved-liao/Dockerfile/blob/master/typecho/php-fpm/docker-compose.yaml)
-
-Need and put the configuration file in nginx directory ,then
-docker-compose up - d
-
-```
-tree ./nginx
-.
-├── certs
-│   ├── nginx.key
-│   └── nginx.pem
-├── conf.d
-│   └── nginx-site-ssl.conf
-└── nginx.conf
-```
-
 # Document
 [Typecho-搭建使用文档](https://github.com/Nedved-liao/Dockerfile/wiki/typecho-%E6%90%AD%E5%BB%BA%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3)
 
@@ -135,4 +152,4 @@ Author：[<img src="https://avatars2.githubusercontent.com/u/35453327?s=460&amp;
 
 Email: admin@nedved.st
 
-Link: https://www.nedved.st
+Link: https://www.leonisir.com
